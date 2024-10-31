@@ -68,7 +68,7 @@ export default function Home() {
             </h3>
           )}
 
-          <div className="flex flex-col w-fit">
+          <div className="flex flex-col w-fit m-auto">
             <h4 className="text-xl">Sinônimos</h4>
             <hr />
           </div>
