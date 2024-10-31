@@ -68,22 +68,24 @@ export default function Home() {
             </h3>
           )}
 
-          <div className="flex flex-col w-fit m-auto">
-            <h4 className="text-xl">Sinônimos</h4>
-            <hr />
-          </div>
           {dictionaryData.synonyms.length > 0 ? (
-            <div className="m-auto flex gap-2 flex-wrap">
-              {dictionaryData.synonyms.map((synonym) => (
-                <Button
-                  variant="outline"
-                  key={synonym}
-                  onClick={() => getWordSynonyms(synonym)}
-                >
-                  {synonym}
-                </Button>
-              ))}
-            </div>
+            <>
+              <div className="flex flex-col w-fit m-auto">
+                <h4 className="text-xl">Sinônimos</h4>
+                <hr />
+              </div>
+              <div className="m-auto flex gap-2 flex-wrap">
+                {dictionaryData.synonyms.map((synonym) => (
+                  <Button
+                    variant="outline"
+                    key={synonym}
+                    onClick={() => getWordSynonyms(synonym)}
+                  >
+                    {synonym}
+                  </Button>
+                ))}
+              </div>
+            </>
           ) : (
             <h3 className="text-2xl text-center">
               Nenhum resultado para <strong>{dictionaryData.word}</strong> foi
