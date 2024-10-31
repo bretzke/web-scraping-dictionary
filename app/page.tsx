@@ -6,7 +6,7 @@ import { useState } from "react";
 
 interface DictionaryDataProps {
   word: string;
-  synonyms: string[];
+  relatedWords: string[];
 }
 
 export default function Home() {
@@ -14,14 +14,14 @@ export default function Home() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [dictionaryData, setDictionaryData] = useState<DictionaryDataProps>({
     word: "",
-    synonyms: [],
+    relatedWords: [],
   });
 
-  async function getWordSynonyms(word: string) {
+  async function getRelatedWords(word: string) {
     setInputValue(word);
     setIsSubmitting(true);
 
-    setDictionaryData({ word, synonyms: [] });
+    setDictionaryData({ word, relatedWords: [] });
 
     const response = await fetch("/api/search", {
       method: "POST",
@@ -34,7 +34,7 @@ export default function Home() {
 
     setDictionaryData((prevState) => ({
       ...prevState,
-      synonyms: data.synonyms,
+      relatedWords: data.relatedWords,
     }));
 
     setIsSubmitting(false);
@@ -45,7 +45,7 @@ export default function Home() {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          getWordSynonyms(inputValue);
+          getRelatedWords(inputValue);
         }}
       >
         <div className="flex gap-2">
@@ -62,26 +62,26 @@ export default function Home() {
 
       {dictionaryData.word.length > 0 && !isSubmitting && (
         <div className="flex flex-col gap-4">
-          {dictionaryData.synonyms.length > 0 && (
+          {dictionaryData.relatedWords.length > 0 && (
             <h3 className="text-2xl">
               Palavra pesquisada: <strong>{dictionaryData.word}</strong>
             </h3>
           )}
 
-          {dictionaryData.synonyms.length > 0 ? (
+          {dictionaryData.relatedWords.length > 0 ? (
             <>
               <div className="flex flex-col w-fit m-auto">
-                <h4 className="text-xl">Sinônimos</h4>
+                <h4 className="text-xl">Palavras relacionadas</h4>
                 <hr />
               </div>
               <div className="m-auto flex gap-2 flex-wrap">
-                {dictionaryData.synonyms.map((synonym) => (
+                {dictionaryData.relatedWords.map((relatedWord) => (
                   <Button
                     variant="outline"
-                    key={synonym}
-                    onClick={() => getWordSynonyms(synonym)}
+                    key={relatedWord}
+                    onClick={() => getRelatedWords(relatedWord)}
                   >
-                    {synonym}
+                    {relatedWord}
                   </Button>
                 ))}
               </div>

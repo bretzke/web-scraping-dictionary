@@ -17,15 +17,15 @@ export async function POST(req: NextRequest) {
   const html = await response.text();
   const $ = cheerio.load(html);
 
-  const synonyms: string[] = [];
+  const relatedWords: string[] = [];
 
   $("section#analogico ul li").each((_, element) => {
     const text = $(element).text();
 
     if (text !== word) {
-      synonyms.push(text);
+      relatedWords.push(text);
     }
   });
 
-  return NextResponse.json({ synonyms });
+  return NextResponse.json({ relatedWords });
 }
