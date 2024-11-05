@@ -47,7 +47,7 @@ export async function POST(req: NextRequest) {
   });
 
   let lastClassification = "";
-  meaningsAndDefinitionsHtml("p.significado span").each((_, element) => {
+  meaningsAndDefinitionsHtml("p.significado > span").each((_, element) => {
     const isClassification = meaningsAndDefinitionsHtml(element).hasClass("cl");
     const text = meaningsAndDefinitionsHtml(element).text();
 
