@@ -10,7 +10,7 @@ export default function RootLayout({
       <head>
         <title>Dicionário pt-BR</title>
       </head>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased bg-[#D4FCBC]">{children}</body>
     </html>
   );
 }

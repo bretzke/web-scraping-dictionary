@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { MeaningsProps } from "@/interfaces/Meanings";
 import { Search } from "lucide-react";
+import Image from "next/image";
 import { useMemo, useState } from "react";
 
 interface DictionaryDataProps {
@@ -58,6 +59,15 @@ export default function Home() {
 
   return (
     <div className="p-8 flex flex-col gap-8">
+      <div className="flex gap-2 items-center">
+        <Image
+          src="/images/brazil-flag.svg"
+          width={50}
+          height={50}
+          alt="Brazil flag"
+        />
+        <h1 className="text-3xl font-bold">Dicionário Português</h1>
+      </div>
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -66,7 +76,7 @@ export default function Home() {
       >
         <div className="flex gap-2">
           <Input
-            placeholder="Procurar..."
+            placeholder="Procurar uma palavra..."
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
           />
@@ -88,7 +98,7 @@ export default function Home() {
                 <h4 className="text-xl">
                   Significado de {dictionaryData.word}
                 </h4>
-                <hr />
+                <hr className="border-black" />
               </div>
 
               <div>
@@ -112,7 +122,7 @@ export default function Home() {
             <section className="flex flex-col gap-4 w-1/2 max-md:w-full">
               <div className="flex flex-col w-fit mx-auto">
                 <h4 className="text-xl">Palavras relacionadas</h4>
-                <hr />
+                <hr className="border-black" />
               </div>
               {dictionaryData.relatedWords.length > 0 ? (
                 <div className="mx-auto flex gap-2 flex-wrap">
