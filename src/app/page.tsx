@@ -58,7 +58,7 @@ export default function Home() {
   ]);
 
   return (
-    <div className="p-8 flex flex-col gap-8">
+    <div className="flex flex-col gap-8">
       <div className="flex gap-2 items-center">
         <Image
           src="/images/brazil-flag.svg"
