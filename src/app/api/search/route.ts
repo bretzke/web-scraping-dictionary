@@ -24,10 +24,6 @@ export async function POST(req: NextRequest) {
       ),
     ]);
 
-  if (!relatedWordsResponse.ok && !meaningsAndDefinitionsResponse.ok) {
-    throw new Error(`Response status: ${relatedWordsResponse.status}`);
-  }
-
   const [relatedWordsHtml, meaningsAndDefinitionsHtml] = await Promise.all([
     relatedWordsResponse.text().then((response) => cheerio.load(response)),
     meaningsAndDefinitionsResponse
