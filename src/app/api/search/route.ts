@@ -48,7 +48,7 @@ export async function POST(req: NextRequest) {
     const text = meaningsAndDefinitionsHtml(element).text();
 
     if (isClassification) {
-      meanings.push({ label: text, classifications: [] });
+      meanings.push({ label: text, meanings: [] });
       lastClassification = text;
       return;
     }
@@ -57,7 +57,7 @@ export async function POST(req: NextRequest) {
       (meaning) => meaning.label === lastClassification
     );
 
-    classification?.classifications.push(text);
+    classification?.meanings.push(text);
   });
 
   return NextResponse.json({ relatedWords, meanings });

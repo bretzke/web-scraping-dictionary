@@ -106,8 +106,8 @@ export default function Home() {
                   dictionaryData.meanings.map((meaning) => (
                     <div key={meaning.label}>
                       <h5 className="italic font-bold">{meaning.label}</h5>
-                      {meaning.classifications.map((classification) => (
-                        <p key={classification}>{classification}</p>
+                      {meaning.meanings.map((meaning) => (
+                        <p key={meaning}>{meaning}</p>
                       ))}
                     </div>
                   ))
